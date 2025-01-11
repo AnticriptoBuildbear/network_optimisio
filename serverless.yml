@@ -1,0 +1,61 @@
+service: defender-as-code-test-project
+configValidationMode: error
+frameworkVersion: '3'
+provider:
+  name: defender
+  stage: ${opt:stage, 'dev'}
+  stackName: mystack
+  ssot: false
+custom:
+  config: ${file(secrets.${self:provider.stage}.yml)}
+defender:
+  key: ${self:custom.config.keys.api}
+  secret: ${self:custom.config.keys.secret}
+resources:
+  actions:
+    activate-relayer:
+      name: activate relayer
+      relayer: ${self:resources.relayers.relayer}
+      trigger:
+        type: sentinel
+      paused: false
+      path: <PATH_TO_YOUR_ACTION_CODE_HERE>
+  policies:
+    policy-qb:
+      gas-price-cap: '1000000000'
+      eip1559-pricing: true
+      private-transactions: false
+  contracts:
+    opweth:
+      name: opweth
+      address: '0x4200000000000000000000000000000000000006'
+      network: optimism
+  relayers:
+    relayer:
+      name: 'relayer '
+      network: optimism
+      min-balance: '100000000000000000'
+      policy: ${self:resources.policies.policy-qb}
+      api-keys:
+        - key-1
+  relayer-groups: {}
+  notifications:
+    optimicio:
+      type: webhook
+      name: optimicio
+      config:
+        url: https://optimistic.etherscan.io/accounts
+        secret: 3bd2e44b23fc83f5d84a76eb876e7ac6
+      paused: false
+  monitors: {}
+  forked-networks: {}
+  private-networks: {}
+  block-explorer-api-keys:
+    optimism-sepolia:
+      network: optimism-sepolia
+      key-hash: 7a9eea6fc33795e6e9a7170100d8e53a9f04f568be2d69584e504a729aad14e4
+    optimism:
+      network: optimism
+      key-hash: b4e89a4fba26ff0ab1105db47467cc032f9f367876a2e8c88f24ef04b0ac949d
+plugins:
+  - '@openzeppelin/defender-as-code'
