@@ -1,0 +1,1 @@
+[![Deploy Node.js project to Azure Function App](https://github.com/AnticriptoBuildbear/network_optimisio/actions/workflows/azure-functions-app-nodejs.yml/badge.svg?branch=main&event=workflow_run)](https://github.com/AnticriptoBuildbear/network_optimisio/actions/workflows/azure-functions-app-nodejs.yml)
