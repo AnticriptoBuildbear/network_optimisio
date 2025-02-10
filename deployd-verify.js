@@ -1,5 +1,2 @@
-run-script script_name flags='' sig='' args='':
-  sh -c 'FOUNDRY_PROFILE=ci forge script script/{{script_name}}.s.sol {{sig}} {{args}}     --rpc-url "https://rpc.buildbear.io/missing-hela-e7fd69ed"     --private-key "0xb814308ee6eec33293216a391841cb80c864fe475bbc4992fe7f045ed12962c8"     --etherscan-api-key "  "     --verifier-url "https://rpc.buildbear.io/verify/etherscan/missing-hela-e7fd69ed"     -vvvv {{flags}}' 
-
-deploy-verify:
-  sh -c 'just run-script <SCRIPT_NAME> "--broadcast --verify --slow"'
+ // CUSTOMIZED CODE SNIPPET AVAILABLE IN YOUR DASHBOARD
+forge script script/<SCRIPT_NAME>.s.sol --"https://rpc.buildbear.io/esquivelfabian"--private-key "<0xfbd4417674c8b9f7d82078dadde6c5d4ca3933ce41bb4bdc22db86beb3c435ec>" --"https://api-optimistic.etherscan.io/RGY5GT2E8T5F2ZQ6W8A3FJU67JIF9BEU7R" --"0xd98c449c5aec0d5008cb02ca964112b894c841b5 " --verifier-url "https://rpc.buildbear.io/0xd98c449c5aec0d5008cb02ca964112b894c841b5/etherscan/10" -vvvv --broadcast --verify --slow
